@@ -15,6 +15,9 @@ class CreateEmpleatsTable extends Migration
     {
         Schema::create('empleats', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('email');
+            $table->string('telefon');
             $table->timestamps();
         });
     }
