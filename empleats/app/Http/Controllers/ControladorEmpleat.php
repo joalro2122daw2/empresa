@@ -15,8 +15,10 @@ class ControladorEmpleat extends Controller
      */
     public function index()
     {
-        //
+        $empleat = Empleat::all();
+        return view('index', compact('empleat'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +27,7 @@ class ControladorEmpleat extends Controller
      */
     public function create()
     {
-        //
+        return view('welcome');
     }
 
     /**
@@ -36,7 +38,14 @@ class ControladorEmpleat extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nouEmpleat = $request->validate([
+            'nom' => 'required|max:255',
+            'email' => 'required|max:255',
+            'telefon' => 'required|max:255',
+        ]);
+        $empleat = Empleat::create($nouEmpleat);
+
+        return redirect('/empleats')->with('completed', 'Empleat creat!');
     }
 
     /**
@@ -58,7 +67,9 @@ class ControladorEmpleat extends Controller
      */
     public function edit($id)
     {
-        //
+        $empleat = Empleat::findOrFail($id);
+        return view('actualitza', compact('empleat'));
+
     }
 
     /**
@@ -70,7 +81,14 @@ class ControladorEmpleat extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dades = $request->validate([
+            'nom' => 'required|max:255',
+            'email' => 'required|max:255',
+            'telefon' => 'required|max:255',
+        ]);
+
+        Empleat::whereId($id)->update($dades);
+        return redirect('/empleats')->with('completed', 'Empleat actualitzat');
     }
 
     /**
@@ -81,6 +99,9 @@ class ControladorEmpleat extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empleat = Empleat::findOrFail($id);
+        return view('index', compact('empleat'));
     }
+
+
 }
