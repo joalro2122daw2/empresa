@@ -2,10 +2,9 @@
 
 @section('content')
 
-
     <div class="card mt-5">
         <div class="card-header">
-            Actualització de dades
+            Afegeix un nou empleat
         </div>
 
         <div class="card-body">
@@ -18,25 +17,23 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('empleats.update', $empleat->id) }}">
+            <form method="post" action="{{ route('empleats.store') }}">
                 <div class="form-group">
                     @csrf
-                    @method('PATCH')
                     <label for="nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" value="{{ $empleat->nom }}" />
+                    <input type="text" class="form-control" name="nom"/>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" value="{{ $empleat->email }}" />
+                    <input type="email" class="form-control" name="email"/>
                 </div>
                 <div class="form-group">
                     <label for="telefon">Telèfon</label>
-                    <input type="text" class="form-control" name="telefon" value="{{ $empleat->telefon }}" />
+                    <input type="tel" class="form-control" name="telefon"/>
                 </div>
-
-                <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
+                <button type="submit" class="btn btn-block btn-primary">Envia</button>
             </form>
         </div>
     </div>
-    <br><a href="{{ url('empleats') }}">Accés directe a la Llista d'empleats</a
+    <br><a href="{{ url('empleats') }}">Accés directe a la Llista d'empleats</a>
 @endsection

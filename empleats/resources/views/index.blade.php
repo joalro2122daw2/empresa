@@ -1,4 +1,4 @@
-@extends('disseny')
+@extends('diseny')
 
 @section('content')
 

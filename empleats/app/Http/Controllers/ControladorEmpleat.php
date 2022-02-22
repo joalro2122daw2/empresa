@@ -27,8 +27,9 @@ class ControladorEmpleat extends Controller
      */
     public function create()
     {
-        return view('welcome');
+        return view('crea');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -100,7 +101,9 @@ class ControladorEmpleat extends Controller
     public function destroy($id)
     {
         $empleat = Empleat::findOrFail($id);
-        return view('index', compact('empleat'));
+        $empleat->delete();
+        return redirect('/empleats')->with('completed', 'Empleat esborrat');
+
     }
 
 
